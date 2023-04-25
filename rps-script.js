@@ -8,43 +8,37 @@ const computerSelection = computerChoice();
 
 console.log(computerSelection);
 
-let playerSelection = prompt("Rock, Paper or Scissors");//* Prompt player for selection
+let playerChoice = prompt("Rock, Paper or Scissors?");//* Prompt player for selection
 
-let playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+let playerSelection = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
 
-console.log(playerChoice);
+console.log(playerSelection);
 
-if (playerChoice == computerSelection){
-    alert("It's a tie!");
-}
-
-if (playerChoice === "Paper"){
-    if (computerSelection === "Scissors"){
-        alert("You LOST");
-    } else if (computerSelection === "Rock") {
-        alert("You WON!");
+function playRound (playerSelection, computerSelection){
+    if (playerSelection === computerSelection){
+        return "It's a tie!";
+    } else if (playerSelection === "Paper"){
+        if (computerSelection === "Scissors"){
+            return "You LOST";
+        } else if (computerSelection === "Rock") {
+            return "You WON!";
+        }
+    } else if (playerSelection === "Rock"){
+        if (computerSelection === "Paper"){
+            return "You LOST";
+        } else if (computerSelection === "Scissors") {
+            return "You WON!";
+        }
+    } else if (playerSelection === "Scissors"){
+        if (computerSelection === "Rock"){
+            return "You LOST";
+        } else if (computerSelection === "Paper"){
+            return "You WON!";
+        }
+    } else {
+        return "That's not an option!";
     }
 }
 
-if (playerChoice === "Rock"){
-    if (computerSelection === "Paper"){
-        alert("You LOST");
-    } else if (computerSelection === "Scissors") {
-        alert("You WON!");
-    }
-}
-
-if (playerChoice === "Scissors"){
-    if (computerSelection === "Rock"){
-        alert("You LOST");
-    } else if (computerSelection === "Paper") {
-        alert("You WON!");
-    }
-}
-
-if (playerChoice != "Rock" &&
-    playerChoice != "Paper" && 
-    playerChoice != "Scissors"){
-    alert("That's not an option!");
-}
+console.log(playRound(playerSelection, computerSelection));
     //* Compare selections and determine the winner
