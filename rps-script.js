@@ -1,44 +1,83 @@
 const choices = ['Rock', 'Paper', 'Scissors'];
+const winner = "You WON!";
+const loser = "You LOST!";
+const tie = "It's a TIE!";
+const notOption = "That's not an option!";
 
-function computerChoice(){
-    return choices[Math.floor(Math.random()*choices.length)];
-}//* Determine computer selection
+let playerChoice;
+let computerScore = 0;
+let playerScore = 0;
 
-const computerSelection = computerChoice();
 
-console.log(computerSelection);
+while (playerScore !== 2 && computerScore !== 2){
+    function game(playerChoice){
+        function computerChoice(){
+            return choices[Math.floor(Math.random()*choices.length)];
+        }// Determine computer selection
 
-let playerChoice = prompt("Rock, Paper or Scissors?");//* Prompt player for selection
+        const computerSelection = computerChoice();
 
-let playerSelection = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+        console.log(computerSelection);
 
-console.log(playerSelection);
+        playerChoice = prompt("Rock, Paper or Scissors?");// Prompt player for selection
 
-function playRound (playerSelection, computerSelection){
-    if (playerSelection === computerSelection){
-        return "It's a tie!";
-    } else if (playerSelection === "Paper"){
-        if (computerSelection === "Scissors"){
-            return "You LOST";
-        } else if (computerSelection === "Rock") {
-            return "You WON!";
+        let playerSelection = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+
+        console.log(playerSelection);
+
+        function playRound(playerSelection, computerSelection){
+            if (playerSelection == computerSelection){
+                return tie;
+            } else if (playerSelection === "Paper"){
+                if (computerSelection === "Scissors"){
+                    return loser;
+                } else if (computerSelection === "Rock") {
+                    return winner;
+                }
+            } else if (playerSelection === "Rock"){
+                if (computerSelection === "Paper"){
+                    return loser;
+                } else if (computerSelection === "Scissors") {
+                    return winner;
+                }
+            } else if (playerSelection === "Scissors"){
+                if (computerSelection === "Rock"){
+                    return loser;
+                } else if (computerSelection === "Paper"){
+                    return winner;
+                }
+            } else {
+                return notOption;
+            }
+        };
+
+        let outcome = playRound(playerSelection,computerSelection);
+
+        if (outcome === winner){
+            playerScore = playerScore + 1;
+        } else if (outcome === loser){
+            computerScore = computerScore + 1;
         }
-    } else if (playerSelection === "Rock"){
-        if (computerSelection === "Paper"){
-            return "You LOST";
-        } else if (computerSelection === "Scissors") {
-            return "You WON!";
+
+
+        console.log(outcome);
+        console.log("Player Score: "+playerScore);
+        console.log("Computer Score: "+computerScore);
+
+        if (playerScore === 2){
+            console.log("YOU WON THE GAME!");
+        } else if (computerScore === 2){
+            console.log("GAME OVER");
         }
-    } else if (playerSelection === "Scissors"){
-        if (computerSelection === "Rock"){
-            return "You LOST";
-        } else if (computerSelection === "Paper"){
-            return "You WON!";
-        }
-    } else {
-        return "That's not an option!";
     }
+
+    game();
+
 }
 
-console.log(playRound(playerSelection, computerSelection));
-    //* Compare selections and determine the winner
+
+
+
+
+
+    // Compare selections and determine the winner
