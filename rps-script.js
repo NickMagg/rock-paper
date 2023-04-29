@@ -7,9 +7,10 @@ const notOption = "That's not an option!";
 let playerChoice;
 let computerScore = 0;
 let playerScore = 0;
+let winningScore = 2;
 
 
-while (playerScore !== 2 && computerScore !== 2){
+while (playerScore !== winningScore && computerScore !== winningScore){
     function game(playerChoice){
         function computerChoice(){
             return choices[Math.floor(Math.random()*choices.length)];
@@ -64,9 +65,9 @@ while (playerScore !== 2 && computerScore !== 2){
         console.log("Player Score: "+playerScore);
         console.log("Computer Score: "+computerScore);
 
-        if (playerScore === 2){
+        if (playerScore === winningScore){
             console.log("YOU WON THE GAME!");
-        } else if (computerScore === 2){
+        } else if (computerScore === winningScore){
             console.log("GAME OVER");
         }
     }
